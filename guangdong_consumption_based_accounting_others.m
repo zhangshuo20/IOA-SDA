@@ -1,60 +1,60 @@
 clear
 global k
-% nn=42;%ĞĞÒµÊı,n>2
-% m=6;%×îÖÕĞèÇóÊıÁ¿£¨m>3£¬×îÖÕĞèÇó¾ØÕóµÄ×îºóÁ½ÁĞ·Ö±ğÊÇÁ÷³öEXºÍÁ÷ÈëIM£©
-k=0;%×îÖÕÍ¶ÈëÊıÁ¿,Êµ¼ÊÉÏÖ»ÓĞkÓÃ×÷ÁËÈ«¾Ö±äÁ¿
+% nn=42;%è¡Œä¸šæ•°,n>2
+% m=6;%æœ€ç»ˆéœ€æ±‚æ•°é‡ï¼ˆm>3ï¼Œæœ€ç»ˆéœ€æ±‚çŸ©é˜µçš„æœ€åä¸¤åˆ—åˆ†åˆ«æ˜¯æµå‡ºEXå’Œæµå…¥IMï¼‰
+k=0;%æœ€ç»ˆæŠ•å…¥æ•°é‡,å®é™…ä¸Šåªæœ‰kç”¨ä½œäº†å…¨å±€å˜é‡
 
-%% ¶ÁÈ¡»òÊäÈëÊı¾İ£¬²¢¶ÔÊı¾İ½øĞĞ½â°ü
+%% è¯»å–æˆ–è¾“å…¥æ•°æ®ï¼Œå¹¶å¯¹æ•°æ®è¿›è¡Œè§£åŒ…
 load guangdong_data_EEIO_2000_2015.mat
-% guangdong_data_EEIO_2000_2015.matÖĞµÄ±äÁ¿guangdong_EEIO_2000_2015ÎªÔª°ûÊı×é£¬¹²7¸öÔªËØ£¬¾ùÎª46*49£¨º¬ÓĞ½ø¿Ú+µ÷³öÁĞ£©µÄEEIO¾ØÕó,µÚ43-46ĞĞ·Ö±ğ¶ÔÓ¦CO2,SO2,NOxºÍPM£»
-% guangdong_EEIO_2000_2015{i},i=1-7·Ö±ğ¶ÔÓ¦Äê·İÎª2000,2002,2005,2007,2010,2012,2015
+% guangdong_data_EEIO_2000_2015.matä¸­çš„å˜é‡guangdong_EEIO_2000_2015ä¸ºå…ƒèƒæ•°ç»„ï¼Œå…±7ä¸ªå…ƒç´ ï¼Œå‡ä¸º46*49ï¼ˆå«æœ‰è¿›å£+è°ƒå‡ºåˆ—ï¼‰çš„EEIOçŸ©é˜µ,ç¬¬43-46è¡Œåˆ†åˆ«å¯¹åº”CO2,SO2,NOxå’ŒPMï¼›
+% guangdong_EEIO_2000_2015{i},i=1-7åˆ†åˆ«å¯¹åº”å¹´ä»½ä¸º2000,2002,2005,2007,2010,2012,2015
 for i=1:length(guangdong_EEIO_2000_2015)
     % CEEIO=guangdong_EEIO_2000_2015{i}(1:43,:);%CO2  
      CEEIO=[guangdong_EEIO_2000_2015{i}(1:42,:);guangdong_EEIO_2000_2015{i}(44,:)];%SO2
     % CEEIO=[guangdong_EEIO_2000_2015{i}(1:42,:);guangdong_EEIO_2000_2015{i}(45,:)];%NOx
     % CEEIO=[guangdong_EEIO_2000_2015{i}(1:42,:);guangdong_EEIO_2000_2015{i}(46,:)];%PM
     
-    % %µ÷ÓÃcheckdataº¯Êı£¬Ğ£ÑéÊı¾İÊÇ·ñÕıÈ·
+    % %è°ƒç”¨checkdataå‡½æ•°ï¼Œæ ¡éªŒæ•°æ®æ˜¯å¦æ­£ç¡®
     % checkdata(CEEIO,n,m,k); 
 
-    %¶ÔÍ¶Èë²ú³ö±íÊı¾İÖĞµÄÁ÷Èë£¨°üÀ¨ÁË½ø¿ÚºÍµ÷Èë£¬IM£©½øĞĞ´¦Àí£¬´¦ÀíÖ®ºóÍ¶Èë²ú³ö±íµÄ×îÖÕĞèÇó¼õÉÙÁË1ÁĞ
-    CEEIO=data_process_im(CEEIO,3); %²ÉÓÃµÚ3ÖÖ·½Ê½´¦ÀíÍ¶Èë²ú³ö±íÖĞµÄIM£¬½«3¸ÄÎª1»ò3ÎªµÚ1»ò2ÖÖ·½Ê½´¦ÀíIM
+    %å¯¹æŠ•å…¥äº§å‡ºè¡¨æ•°æ®ä¸­çš„æµå…¥ï¼ˆåŒ…æ‹¬äº†è¿›å£å’Œè°ƒå…¥ï¼ŒIMï¼‰è¿›è¡Œå¤„ç†ï¼Œå¤„ç†ä¹‹åæŠ•å…¥äº§å‡ºè¡¨çš„æœ€ç»ˆéœ€æ±‚å‡å°‘äº†1åˆ—
+    CEEIO=data_process_im(CEEIO,3); %é‡‡ç”¨ç¬¬3ç§æ–¹å¼å¤„ç†æŠ•å…¥äº§å‡ºè¡¨ä¸­çš„IMï¼Œå°†3æ”¹ä¸º1æˆ–3ä¸ºç¬¬1æˆ–2ç§æ–¹å¼å¤„ç†IM
 
-    %µ÷ÓÃunpackdataº¯Êı£¬¶ÔCEEIO½øĞĞÊı¾İ½â°ü
-    [Z,V,F,EP,pop]=unpackdata(CEEIO); %ZÎªÖĞ¼äÍ¶Èë£¬VÎª×îÖÕÍ¶Èë£¬FÎª×îÖÕĞèÇó£¬EPÎª»·¾³Ñ¹Á¦£¬popÎªÈË¿Ú
+    %è°ƒç”¨unpackdataå‡½æ•°ï¼Œå¯¹CEEIOè¿›è¡Œæ•°æ®è§£åŒ…
+    [Z,V,F,EP,pop]=unpackdata(CEEIO); %Zä¸ºä¸­é—´æŠ•å…¥ï¼ŒVä¸ºæœ€ç»ˆæŠ•å…¥ï¼ŒFä¸ºæœ€ç»ˆéœ€æ±‚ï¼ŒEPä¸ºç¯å¢ƒå‹åŠ›ï¼Œpopä¸ºäººå£
     
-    %¼ÆËãÍ¶Èë²ú³öÄ£ĞÍµÄ±äÁ¿»·¾³Ñ¹Á¦EPIºÍÁĞ°ºÌè·òÄæ¾ØÕóL
-    X=(sum(Z'))'+(sum(F'))';% ¼ÆËã·ÖĞĞÒµµÄ×Ü²ú³ö X (n*1)
-    X(find(X==0))=0.1; %½«×Ü²ú³öXÖĞÎª0µÄĞĞÒµ²ú³öÓÃÒ»¸öºÜĞ¡µÄÕıÖµ0.1Ìæ´ú£¬ÒÔÃâEPI=EP./X¼ÆËã³ö´í
-    EPI=EP./X'; %·ÖĞĞÒµ»·¾³Ñ¹Á¦¼ÆËã (1*n)
-    A=Z*inv(diag(X)); %Í¶Èë²ú³ö±íÖĞ¼äÁ÷Á¿ÏµÊı¼ÆËã (n*n)
-    L=eye(length(A))/(eye(length(A))-A); % LeontiefÄæ¾ØÕó£¬×îÖÕĞèÇóÏµÊı (n*n)
+    %è®¡ç®—æŠ•å…¥äº§å‡ºæ¨¡å‹çš„å˜é‡ç¯å¢ƒå‹åŠ›EPIå’Œåˆ—æ˜‚æƒ•å¤«é€†çŸ©é˜µL
+    X=(sum(Z'))'+(sum(F'))';% è®¡ç®—åˆ†è¡Œä¸šçš„æ€»äº§å‡º X (n*1)
+    X(find(X==0))=0.1; %å°†æ€»äº§å‡ºXä¸­ä¸º0çš„è¡Œä¸šäº§å‡ºç”¨ä¸€ä¸ªå¾ˆå°çš„æ­£å€¼0.1æ›¿ä»£ï¼Œä»¥å…EPI=EP./Xè®¡ç®—å‡ºé”™
+    EPI=EP./X'; %åˆ†è¡Œä¸šç¯å¢ƒå‹åŠ›è®¡ç®— (1*n)
+    A=Z*inv(diag(X)); %æŠ•å…¥äº§å‡ºè¡¨ä¸­é—´æµé‡ç³»æ•°è®¡ç®— (n*n)
+    L=eye(length(A))/(eye(length(A))-A); % Leontiefé€†çŸ©é˜µï¼Œæœ€ç»ˆéœ€æ±‚ç³»æ•° (n*n)
     
-    %¼ÆËã¸÷Àà×îÖÕĞèÇóµÄconsumption-basedµÄ»·¾³Ñ¹Á¦
-    %×îÖÕĞèÇóFµÄµÚ1:6ÁĞ·Ö±ğ¶ÔÓ¦Å©´åÏû·Ñ¡¢³ÇÕòÏû·Ñ¡¢Õş¸®Ïû·Ñ¡¢¹Ì¶¨×Ê²úÍ¶×Ê¡¢´æ»õ±ä»¯¡¢Á÷³ö£¨³ö¿Ú+µ÷³ö£©
+    %è®¡ç®—å„ç±»æœ€ç»ˆéœ€æ±‚çš„consumption-basedçš„ç¯å¢ƒå‹åŠ›
+    %æœ€ç»ˆéœ€æ±‚Fçš„ç¬¬1:6åˆ—åˆ†åˆ«å¯¹åº”å†œæ‘æ¶ˆè´¹ã€åŸé•‡æ¶ˆè´¹ã€æ”¿åºœæ¶ˆè´¹ã€å›ºå®šèµ„äº§æŠ•èµ„ã€å­˜è´§å˜åŒ–ã€æµå‡ºï¼ˆå‡ºå£+è°ƒå‡ºï¼‰
     
-    C_rural_consumption{i}=EPI*L*diag(F(:,1));%Å©´åÏû·ÑµÄ»·¾³Ñ¹Á¦£¨·ÖĞĞÒµ£©
-    C_urban_consumption{i}=EPI*L*diag(F(:,2));%³ÇÕòÏû·ÑµÄ»·¾³Ñ¹Á¦£¨·ÖĞĞÒµ£©
-    C_government_consumption{i}=EPI*L*diag(F(:,3));%Õş¸®Ïû·ÑµÄ»·¾³Ñ¹Á¦£¨·ÖĞĞÒµ£©
-    C_fixed_investment{i}=EPI*L*diag(F(:,4));%¹Ì¶¨×Ê²úÍ¶×ÊµÄ»·¾³Ñ¹Á¦£¨·ÖĞĞÒµ£©
-    C_inventory_changes{i}=EPI*L*diag(F(:,5));%´æ»õ±ä»¯µÄ»·¾³Ñ¹Á¦£¨·ÖĞĞÒµ£©
-    C_outflow{i}=EPI*L*diag(F(:,6));%´æ»õ±ä»¯µÄ»·¾³Ñ¹Á¦£¨·ÖĞĞÒµ£©
+    C_rural_consumption{i}=EPI*L*diag(F(:,1));%å†œæ‘æ¶ˆè´¹çš„ç¯å¢ƒå‹åŠ›ï¼ˆåˆ†è¡Œä¸šï¼‰
+    C_urban_consumption{i}=EPI*L*diag(F(:,2));%åŸé•‡æ¶ˆè´¹çš„ç¯å¢ƒå‹åŠ›ï¼ˆåˆ†è¡Œä¸šï¼‰
+    C_government_consumption{i}=EPI*L*diag(F(:,3));%æ”¿åºœæ¶ˆè´¹çš„ç¯å¢ƒå‹åŠ›ï¼ˆåˆ†è¡Œä¸šï¼‰
+    C_fixed_investment{i}=EPI*L*diag(F(:,4));%å›ºå®šèµ„äº§æŠ•èµ„çš„ç¯å¢ƒå‹åŠ›ï¼ˆåˆ†è¡Œä¸šï¼‰
+    C_inventory_changes{i}=EPI*L*diag(F(:,5));%å­˜è´§å˜åŒ–çš„ç¯å¢ƒå‹åŠ›ï¼ˆåˆ†è¡Œä¸šï¼‰
+    C_outflow{i}=EPI*L*diag(F(:,6));%å­˜è´§å˜åŒ–çš„ç¯å¢ƒå‹åŠ›ï¼ˆåˆ†è¡Œä¸šï¼‰
     
-    C_all{i}=EPI*L*diag(sum(F'));%consumption-based »·¾³Ñ¹Á¦£º×îÖÕĞèÇó×ÜÁ¿µÄ»·¾³Ñ¹Á¦£¨·ÖĞĞÒµ£©
-    P{i}=EP; %production-based »·¾³Ñ¹Á¦
+    C_all{i}=EPI*L*diag(sum(F'));%consumption-based ç¯å¢ƒå‹åŠ›ï¼šæœ€ç»ˆéœ€æ±‚æ€»é‡çš„ç¯å¢ƒå‹åŠ›ï¼ˆåˆ†è¡Œä¸šï¼‰
+    P{i}=EP; %production-based ç¯å¢ƒå‹åŠ›
 end
 
-% ½á¹û´æ´¢£¬´æ´¢Ö÷Òª½á¹ûresult(6Àà×îÖÕĞèÇó·ÖĞĞÒµµÄ»·¾³Ñ¹Á¦,×îÖÕĞèÇó×ÜÁ¿µÄ»·¾³Ñ¹Á¦ºÍ»ùÓÚÉú²úµÄ»·¾³Ñ¹Á¦£©
-sheetname={'2000','2002','2005','2007','2010','2012','2015'};%½¨Á¢Êı¾İÄê·İ±êÇ©£¬ÓëguangdongÊı¾İ¶ÔÓ¦
+% ç»“æœå­˜å‚¨ï¼Œå­˜å‚¨ä¸»è¦ç»“æœresult(6ç±»æœ€ç»ˆéœ€æ±‚åˆ†è¡Œä¸šçš„ç¯å¢ƒå‹åŠ›,æœ€ç»ˆéœ€æ±‚æ€»é‡çš„ç¯å¢ƒå‹åŠ›å’ŒåŸºäºç”Ÿäº§çš„ç¯å¢ƒå‹åŠ›ï¼‰
+sheetname={'2000','2002','2005','2007','2010','2012','2015'};%å»ºç«‹æ•°æ®å¹´ä»½æ ‡ç­¾ï¼Œä¸guangdongæ•°æ®å¯¹åº”
 
 for i=1:length(guangdong_EEIO_2000_2015)    
     
-    data=[C_rural_consumption{i}',C_urban_consumption{i}',C_government_consumption{i}',C_fixed_investment{i}',C_inventory_changes{i}',C_outflow{i}',C_all{i}',P{i}']; % ½«Êı¾İ×é¼¯µ½data;
+    data=[C_rural_consumption{i}',C_urban_consumption{i}',C_government_consumption{i}',C_fixed_investment{i}',C_inventory_changes{i}',C_outflow{i}',C_all{i}',P{i}']; % å°†æ•°æ®ç»„é›†åˆ°data;
     [mm, nn]=size(data);            
-    data_cell=mat2cell(data, ones(mm,1), ones(nn,1));    % ½«dataÇĞ¸î³Ém*nµÄcell¾ØÕó
-    title={'C_rural_consumption','C_urban_consumption','C_government_consumption','C_fixed_investment','C_inventory_changes','C_outflow','C_all','Production-based'};              % Ìí¼Ó±äÁ¿Ãû³Æ
-    result= [title; data_cell];                         % ½«±äÁ¿Ãû³ÆºÍÊıÖµ×é¼¯µ½result
-    s1=xlswrite('C:\Users\yuyd\Desktop\¹ã¶«CO2-SDA\results_SO2.xlsx',result,sheetname{i},'C3:J45');% ½«resultĞ´Èëµ½ÎÄ¼şÖĞ
+    data_cell=mat2cell(data, ones(mm,1), ones(nn,1));    % å°†dataåˆ‡å‰²æˆm*nçš„cellçŸ©é˜µ
+    title={'C_rural_consumption','C_urban_consumption','C_government_consumption','C_fixed_investment','C_inventory_changes','C_outflow','C_all','Production-based'};              % æ·»åŠ å˜é‡åç§°
+    result= [title; data_cell];                         % å°†å˜é‡åç§°å’Œæ•°å€¼ç»„é›†åˆ°result
+    s1=xlswrite('.\å¹¿ä¸œCO2-SDA\results_SO2.xlsx',result,sheetname{i},'C3:J45');% å°†resultå†™å…¥åˆ°æ–‡ä»¶ä¸­
     
 end
 
