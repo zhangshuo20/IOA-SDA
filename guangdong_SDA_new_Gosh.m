@@ -1,15 +1,15 @@
 clear
 global k
-% n=42;%ĞĞÒµÊı,n>2
-% m=6;%×îÖÕĞèÇóÊıÁ¿£¨m>3£¬×îÖÕĞèÇó¾ØÕóµÄ×îºóÁ½ÁĞ·Ö±ğÊÇÁ÷³öEXºÍÁ÷ÈëIM£©
-k=1;%×îÖÕÍ¶ÈëÊıÁ¿,Êµ¼ÊÉÏÖ»ÓĞkÓÃ×÷ÁËÈ«¾Ö±äÁ¿
+% n=42;%è¡Œä¸šæ•°,n>2
+% m=6;%æœ€ç»ˆéœ€æ±‚æ•°é‡ï¼ˆm>3ï¼Œæœ€ç»ˆéœ€æ±‚çŸ©é˜µçš„æœ€åä¸¤åˆ—åˆ†åˆ«æ˜¯æµå‡ºEXå’Œæµå…¥IMï¼‰
+k=1;%æœ€ç»ˆæŠ•å…¥æ•°é‡,å®é™…ä¸Šåªæœ‰kç”¨ä½œäº†å…¨å±€å˜é‡
 
-%% ¶ÁÈ¡»òÊäÈëÊı¾İ£¬²¢¶ÔÊı¾İ½øĞĞ½â°ü
+%% è¯»å–æˆ–è¾“å…¥æ•°æ®ï¼Œå¹¶å¯¹æ•°æ®è¿›è¡Œè§£åŒ…
 load guangdong_data_SDA.mat guangdong
-% guangdong_data_SDAÖĞµÄ±äÁ¿guangdongÎªÔª°ûÊı×é£¬¹²12¸öÔªËØ£¬¾ùÎª43*50£¨º¬ÓĞ½ø¿Ú+µ÷³öÁĞ£©µÄEEIO¾ØÕó£»
-% guangdong{i},i=1-12·Ö±ğ¶ÔÓ¦Äê·İÎª1987,1990,1992,1995,1997,2000,2002,2005,2007,2010,2012,2015
+% guangdong_data_SDAä¸­çš„å˜é‡guangdongä¸ºå…ƒèƒæ•°ç»„ï¼Œå…±12ä¸ªå…ƒç´ ï¼Œå‡ä¸º43*50ï¼ˆå«æœ‰è¿›å£+è°ƒå‡ºåˆ—ï¼‰çš„EEIOçŸ©é˜µï¼›
+% guangdong{i},i=1-12åˆ†åˆ«å¯¹åº”å¹´ä»½ä¸º1987,1990,1992,1995,1997,2000,2002,2005,2007,2010,2012,2015
 
-%% Ô­Ê¼Êı¾İ´¦Àí(°Ñ³õÊ¼Í¶Èë¼ÓºÍÎª1ĞĞ£»°Ñ×îÖÕĞèÇó¼ÓºÍÎª1ÁĞ)Îªguangdong_new
+%% åŸå§‹æ•°æ®å¤„ç†(æŠŠåˆå§‹æŠ•å…¥åŠ å’Œä¸º1è¡Œï¼›æŠŠæœ€ç»ˆéœ€æ±‚åŠ å’Œä¸º1åˆ—)ä¸ºguangdong_new
 for i=1:2
     temp1{i}=[guangdong{i}(1:41,:);sum(guangdong{i}(42:46,:));guangdong{i}(47,:)];
 end
@@ -20,69 +20,69 @@ end
 for i=1:length(guangdong)
     temp2{i}=[temp1{i}(:,1:41),(sum((temp1{i}(:,42:47))'))'];
 end
-guangdong_new=temp2; %´¦ÀíºÃµÄÊı¾İ
+guangdong_new=temp2; %å¤„ç†å¥½çš„æ•°æ®
 clear temp1 temp2
 
-%% ¿ªÊ¼½á¹¹·Ö½â
+%% å¼€å§‹ç»“æ„åˆ†è§£
 for i=1:length(guangdong_new)-1
     MIOT_0=guangdong_new{i};
     MIOT_1=guangdong_new{i+1};
 
-% %% ¼ì²éÊı¾İÊÇ·ñÕıÈ·
-% %µ÷ÓÃcheckdataº¯Êı£¬Ğ£ÑéÊı¾İÊÇ·ñÕıÈ·
+% %% æ£€æŸ¥æ•°æ®æ˜¯å¦æ­£ç¡®
+% %è°ƒç”¨checkdataå‡½æ•°ï¼Œæ ¡éªŒæ•°æ®æ˜¯å¦æ­£ç¡®
 % checkdata(MIOT_1,n,m,k); 
 % checkdata(MIOT_0,n,m,k);
 
-% %% ¶ÔÍ¶Èë²ú³ö±íÊı¾İÖĞµÄÁ÷Èë£¨°üÀ¨ÁË½ø¿ÚºÍµ÷Èë£¬IM£©½øĞĞ´¦Àí£¬´¦ÀíÖ®ºóÍ¶Èë²ú³ö±íµÄ×îÖÕĞèÇó¼õÉÙÁË1ÁĞ
+% %% å¯¹æŠ•å…¥äº§å‡ºè¡¨æ•°æ®ä¸­çš„æµå…¥ï¼ˆåŒ…æ‹¬äº†è¿›å£å’Œè°ƒå…¥ï¼ŒIMï¼‰è¿›è¡Œå¤„ç†ï¼Œå¤„ç†ä¹‹åæŠ•å…¥äº§å‡ºè¡¨çš„æœ€ç»ˆéœ€æ±‚å‡å°‘äº†1åˆ—
 % MIOT_0=data_process_im(MIOT_0,3); 
-% MIOT_1=data_process_im(MIOT_1,3); %²ÉÓÃµÚ3ÖÖ·½Ê½´¦ÀíÍ¶Èë²ú³ö±íÖĞµÄIM£¬½«3¸ÄÎª1»ò3ÎªµÚ1»ò2ÖÖ·½Ê½´¦ÀíIM
+% MIOT_1=data_process_im(MIOT_1,3); %é‡‡ç”¨ç¬¬3ç§æ–¹å¼å¤„ç†æŠ•å…¥äº§å‡ºè¡¨ä¸­çš„IMï¼Œå°†3æ”¹ä¸º1æˆ–3ä¸ºç¬¬1æˆ–2ç§æ–¹å¼å¤„ç†IM
 
- %µ÷ÓÃunpackdataº¯Êı£¬¶ÔMIOT½øĞĞÊı¾İ½â°ü
+ %è°ƒç”¨unpackdataå‡½æ•°ï¼Œå¯¹MIOTè¿›è¡Œæ•°æ®è§£åŒ…
  [Z1,V1,F1,EP1,pop1]=unpackdata(MIOT_1) ;
  [Z0,V0,F0,EP0,pop0]=unpackdata(MIOT_0);
 
- %µ÷ÓÃvariable_calc_new2º¯Êı£¬¶ÔSDAËùĞèµÄ4¸ö±äÁ¿½øĞĞ¼ÆËã¡£µÚ¶şÏóÏŞµÄĞÅÏ¢£¬ÁĞ°ºÌè·òÄ£ĞÍ
+ %è°ƒç”¨variable_calc_new2å‡½æ•°ï¼Œå¯¹SDAæ‰€éœ€çš„4ä¸ªå˜é‡è¿›è¡Œè®¡ç®—ã€‚ç¬¬äºŒè±¡é™çš„ä¿¡æ¯ï¼Œåˆ—æ˜‚æƒ•å¤«æ¨¡å‹
  [EPI1,L1,pf1,G1,pv1,pop1]=variable_calc_new2(Z1,V1,F1,EP1,pop1);
  [EPI0,L0,pf0,G0,pv0,pop0]=variable_calc_new2(Z0,V0,F0,EP0,pop0);
 
-    %% µ÷ÓÃSDAº¯Êı£¬¶ÔGoshÄ£ĞÍ4¸ö±äÁ¿µÄ±ä»¯½øĞĞ½á¹¹·Ö½â£¬¼ÇÂ¼·Ö½âµÄ½á¹û¡£¼Ó·¨·Ö½â
-    %GoshÄ£ĞÍ£¬SDAº¯ÊıµÄÊäÈë±äÁ¿b1ºÍb2
+    %% è°ƒç”¨SDAå‡½æ•°ï¼Œå¯¹Goshæ¨¡å‹4ä¸ªå˜é‡çš„å˜åŒ–è¿›è¡Œç»“æ„åˆ†è§£ï¼Œè®°å½•åˆ†è§£çš„ç»“æœã€‚åŠ æ³•åˆ†è§£
+    %Goshæ¨¡å‹ï¼ŒSDAå‡½æ•°çš„è¾“å…¥å˜é‡b1å’Œb2
     b1={pop1,pv1,G1,EPI1'};
     b0={pop0,pv0,G0,EPI0'};
     
-    %GoshÄ£ĞÍ,µ÷ÓÃSDAº¯Êı£¬¶Ô±äÁ¿µÄ±ä»¯½øĞĞ½á¹¹·Ö½â£¬¼ÇÂ¼·Ö½âµÄ½á¹û¡£¿ÉÑ¡ÔñSDA_DL»òÕßSDA_LMDI_new_Goshº¯Êı
-    temp_Gosh=SDA_DL(b0,b1); % µ÷ÓÃSDA_DLº¯Êı½øĞĞ½á¹¹·Ö½â£¬¼Ó·¨·Ö½â£¬DLËã·¨£»tempÎª½á¹¹Ìå±äÁ¿£¬ÆäÃ¿Ò»¸öÔªËØ¶ÔÓ¦b1{l}-b0{l}µÄ±ä»¯¶Ôb1-b0µÄÓ°Ïì
+    %Goshæ¨¡å‹,è°ƒç”¨SDAå‡½æ•°ï¼Œå¯¹å˜é‡çš„å˜åŒ–è¿›è¡Œç»“æ„åˆ†è§£ï¼Œè®°å½•åˆ†è§£çš„ç»“æœã€‚å¯é€‰æ‹©SDA_DLæˆ–è€…SDA_LMDI_new_Goshå‡½æ•°
+    temp_Gosh=SDA_DL(b0,b1); % è°ƒç”¨SDA_DLå‡½æ•°è¿›è¡Œç»“æ„åˆ†è§£ï¼ŒåŠ æ³•åˆ†è§£ï¼ŒDLç®—æ³•ï¼›tempä¸ºç»“æ„ä½“å˜é‡ï¼Œå…¶æ¯ä¸€ä¸ªå…ƒç´ å¯¹åº”b1{l}-b0{l}çš„å˜åŒ–å¯¹b1-b0çš„å½±å“
     for j=1:length(b0)
         Ea_DL_Gosh(i,j)=temp_Gosh{j};
     end
 
-    %µ÷ÓÃSDA_LMDIº¯Êı½øĞĞ½á¹¹·Ö½â£¬¼Ó·¨·Ö½â£¬LMDIËã·¨;
-   [temp_sEa_Gosh{i},temp_Ea_Gosh]=SDA_LMDI_new_Gosh(b0,b1); %temp_sEaÎª·ÖĞĞÒµµÄ¹±Ï×,temp_EaÎªÕûÌåµÄ¹±Ï×
+    %è°ƒç”¨SDA_LMDIå‡½æ•°è¿›è¡Œç»“æ„åˆ†è§£ï¼ŒåŠ æ³•åˆ†è§£ï¼ŒLMDIç®—æ³•;
+   [temp_sEa_Gosh{i},temp_Ea_Gosh]=SDA_LMDI_new_Gosh(b0,b1); %temp_sEaä¸ºåˆ†è¡Œä¸šçš„è´¡çŒ®,temp_Eaä¸ºæ•´ä½“çš„è´¡çŒ®
    for j=1:length(b0)
         Ea_LMDI_Gosh(i,j)=temp_Ea_Gosh(j);
    end
 end
 
-%% ½«»ùÓÚD&LºÍLMDIËã·¨µÄ·Ö½â½á¹û×ª»»ÎªChaining analysisµÄ½á¹û
-%»ùÓÚD&LËã·¨µÄ·Ö½â½á¹ûµÄchaining analysis£¬Ea_DL_chaining(i,k)ÎªµÚiÄêµÚkÖÖÇı¶¯Á¦µ¼ÖÂµÄÌ¼ÅÅ·Å±ä»¯
-%i=1-12·Ö±ğ¶ÔÓ¦Äê·İÎª1987,1990,1992,1995,1997,2000,2002,2005,2007,2010,2012,2015;
-%k=1,2,3,4·Ö±ğ¶ÔÓ¦»·¾³Ñ¹Á¦Ç¿¶ÈEPI¡¢ÁĞ°ºÌè·òÄæ¾ØÕóL¡¢ĞèÇó½á¹¹F¡¢ÈË¿Úpop
+%% å°†åŸºäºD&Lå’ŒLMDIç®—æ³•çš„åˆ†è§£ç»“æœè½¬æ¢ä¸ºChaining analysisçš„ç»“æœ
+%åŸºäºD&Lç®—æ³•çš„åˆ†è§£ç»“æœçš„chaining analysisï¼ŒEa_DL_chaining(i,k)ä¸ºç¬¬iå¹´ç¬¬kç§é©±åŠ¨åŠ›å¯¼è‡´çš„ç¢³æ’æ”¾å˜åŒ–
+%i=1-12åˆ†åˆ«å¯¹åº”å¹´ä»½ä¸º1987,1990,1992,1995,1997,2000,2002,2005,2007,2010,2012,2015;
+%k=1,2,3,4åˆ†åˆ«å¯¹åº”ç¯å¢ƒå‹åŠ›å¼ºåº¦EPIã€åˆ—æ˜‚æƒ•å¤«é€†çŸ©é˜µLã€éœ€æ±‚ç»“æ„Fã€äººå£pop
 Ea_DL_Gosh=[zeros(1,length(b0));Ea_DL_Gosh];
 Ea_DL_chaining_Gosh(1,:)=Ea_DL_Gosh(1,:);
 for i=2:length(guangdong)
     Ea_DL_chaining_Gosh(i,:)=sum(Ea_DL_Gosh(1:i,:));    
 end
 
-%»ùÓÚLMDIËã·¨µÄ·Ö½â½á¹ûµÄchaining analysis£¬Ea_LMDI_chaining(i,k)ÎªµÚiÄêµÚkÖÖÇı¶¯Á¦µ¼ÖÂµÄÌ¼ÅÅ·Å±ä»¯
-%i=1-12·Ö±ğ¶ÔÓ¦Äê·İÎª1987,1990,1992,1995,1997,2000,2002,2005,2007,2010,2012,2015;
-%k=1,2,3,4,5,6·Ö±ğ¶ÔÓ¦»·¾³Ñ¹Á¦Ç¿¶È¡¢ÁĞ°ºÌè·òÄæ¾ØÕó¡¢ĞèÇó½á¹¹¡¢ĞèÇó¹¹³É¡¢ÈË¾ùĞèÇó¡¢ÈË¿Ú
+%åŸºäºLMDIç®—æ³•çš„åˆ†è§£ç»“æœçš„chaining analysisï¼ŒEa_LMDI_chaining(i,k)ä¸ºç¬¬iå¹´ç¬¬kç§é©±åŠ¨åŠ›å¯¼è‡´çš„ç¢³æ’æ”¾å˜åŒ–
+%i=1-12åˆ†åˆ«å¯¹åº”å¹´ä»½ä¸º1987,1990,1992,1995,1997,2000,2002,2005,2007,2010,2012,2015;
+%k=1,2,3,4,5,6åˆ†åˆ«å¯¹åº”ç¯å¢ƒå‹åŠ›å¼ºåº¦ã€åˆ—æ˜‚æƒ•å¤«é€†çŸ©é˜µã€éœ€æ±‚ç»“æ„ã€éœ€æ±‚æ„æˆã€äººå‡éœ€æ±‚ã€äººå£
 Ea_LMDI_Gosh=[zeros(1,length(b0));Ea_LMDI_Gosh];
 Ea_LMDI_chaining_Gosh(1,:)=Ea_LMDI_Gosh(1,:);
 for i=2:length(guangdong)
     Ea_LMDI_chaining_Gosh(i,:)=sum(Ea_LMDI_Gosh(1:i,:));    
 end
 
-%% Chaining analysisµÄ½á¹û»æÍ¼
+%% Chaining analysisçš„ç»“æœç»˜å›¾
 year=[1987,1990,1992,1995,1997,2000,2002,2005,2007,2010,2012,2015];
 year=year';
 
@@ -100,31 +100,31 @@ xlabel('year')
 ylabel('changes of CO2 (Mt)')
 title('LMDI decomposition agrithom')
 
-%% »ùÓÚLMDIËã·¨¼ÆËãÇı¶¯Á¦µÄ·ÖĞĞÒµ¹±Ï×£¬¼´sectoral contribution 
+%% åŸºäºLMDIç®—æ³•è®¡ç®—é©±åŠ¨åŠ›çš„åˆ†è¡Œä¸šè´¡çŒ®ï¼Œå³sectoral contribution 
 [mm,nn]=size(temp_sEa_Gosh{1});
 sEa_chaining_Gosh{1}=zeros(mm,nn);
 for i=1:length(guangdong)-1
     sEa_chaining_Gosh{i+1}=sEa_chaining_Gosh{i}+temp_sEa_Gosh{i};
 end
-% Ôª°ûÊı×ésEa_chainingÓëÔª°ûÊı×éguangdongµÄ³¤¶ÈÏàÍ¬£¬i=1-12·Ö±ğ¶ÔÓ¦Äê·İÎª1987,1990,1992,1995,1997,2000,2002,2005,2007,2010,2012,2015
-% sEa_chaining{i}(j,k)±íÊ¾µÚi¸öÄê·İ£¬µÚkÖÖÇı¶¯Á¦ÔÚµÚj¸öĞĞÒµµÄÖµ
-% ±¾Ä£ĞÍÖĞ·Ö½âµÃµ½µÄÇı¶¯Á¦°üÀ¨4ÖÖ£¬¼´k=1,2,3,4·Ö±ğ¶ÔÓ¦»·¾³Ñ¹Á¦Ç¿¶È¡¢ÁĞ°ºÌè·òÄæ¾ØÕó¡¢ĞèÇó½á¹¹¡¢ÈË¿Ú
-% ĞĞÒµµÄ·ÖÀà¸ù¾İÊı¾İÈ·¶¨
+% å…ƒèƒæ•°ç»„sEa_chainingä¸å…ƒèƒæ•°ç»„guangdongçš„é•¿åº¦ç›¸åŒï¼Œi=1-12åˆ†åˆ«å¯¹åº”å¹´ä»½ä¸º1987,1990,1992,1995,1997,2000,2002,2005,2007,2010,2012,2015
+% sEa_chaining{i}(j,k)è¡¨ç¤ºç¬¬iä¸ªå¹´ä»½ï¼Œç¬¬kç§é©±åŠ¨åŠ›åœ¨ç¬¬jä¸ªè¡Œä¸šçš„å€¼
+% æœ¬æ¨¡å‹ä¸­åˆ†è§£å¾—åˆ°çš„é©±åŠ¨åŠ›åŒ…æ‹¬4ç§ï¼Œå³k=1,2,3,4åˆ†åˆ«å¯¹åº”ç¯å¢ƒå‹åŠ›å¼ºåº¦ã€åˆ—æ˜‚æƒ•å¤«é€†çŸ©é˜µã€éœ€æ±‚ç»“æ„ã€äººå£
+% è¡Œä¸šçš„åˆ†ç±»æ ¹æ®æ•°æ®ç¡®å®š
 
-%% ½á¹û´æ´¢£¬´æ´¢Ö÷Òª½á¹ûresult(6Àà×îÖÕĞèÇó·ÖĞĞÒµµÄ»·¾³Ñ¹Á¦,×îÖÕĞèÇó×ÜÁ¿µÄ»·¾³Ñ¹Á¦ºÍ»ùÓÚÉú²úµÄ»·¾³Ñ¹Á¦£©
+%% ç»“æœå­˜å‚¨ï¼Œå­˜å‚¨ä¸»è¦ç»“æœresult(6ç±»æœ€ç»ˆéœ€æ±‚åˆ†è¡Œä¸šçš„ç¯å¢ƒå‹åŠ›,æœ€ç»ˆéœ€æ±‚æ€»é‡çš„ç¯å¢ƒå‹åŠ›å’ŒåŸºäºç”Ÿäº§çš„ç¯å¢ƒå‹åŠ›ï¼‰
 
-sheetname={'1987','1990','1992','1995','1997','2000','2002','2005','2007','2010','2012','2015'};%½¨Á¢Êı¾İÄê·İ±êÇ©£¬ÓëguangdongÊı¾İ¶ÔÓ¦
+sheetname={'1987','1990','1992','1995','1997','2000','2002','2005','2007','2010','2012','2015'};%å»ºç«‹æ•°æ®å¹´ä»½æ ‡ç­¾ï¼Œä¸guangdongæ•°æ®å¯¹åº”
 
 for i=1:length(guangdong)       
-    data=[sEa_chaining_Gosh{i}(:,1),sEa_chaining_Gosh{i}(:,2),sEa_chaining_Gosh{i}(:,3),sEa_chaining_Gosh{i}(:,4)]; % ½«Êı¾İ×é¼¯µ½data;
+    data=[sEa_chaining_Gosh{i}(:,1),sEa_chaining_Gosh{i}(:,2),sEa_chaining_Gosh{i}(:,3),sEa_chaining_Gosh{i}(:,4)]; % å°†æ•°æ®ç»„é›†åˆ°data;
     [mm, nn]=size(data);            
-    data_cell=mat2cell(data, ones(mm,1), ones(nn,1));    % ½«dataÇĞ¸î³Ém*nµÄcell¾ØÕó
-    title={'population','primary input structure','Gosh inverse','CO2 intensity'};% Ìí¼Ó±äÁ¿Ãû³Æ
-    result= [title; data_cell];                         % ½«±äÁ¿Ãû³ÆºÍÊıÖµ×é¼¯µ½result
-    s1=xlswrite('C:\Users\yuyd\Desktop\¹ã¶«CO2-SDA\results_new.xlsx',result,sheetname{i},'W3:Z44');% ½«sEa_chainingµÄ½á¹ûĞ´Èëµ½ÎÄ¼ş¶ÔÓ¦Î»ÖÃ   
+    data_cell=mat2cell(data, ones(mm,1), ones(nn,1));    % å°†dataåˆ‡å‰²æˆm*nçš„cellçŸ©é˜µ
+    title={'population','primary input structure','Gosh inverse','CO2 intensity'};% æ·»åŠ å˜é‡åç§°
+    result= [title; data_cell];                         % å°†å˜é‡åç§°å’Œæ•°å€¼ç»„é›†åˆ°result
+    s1=xlswrite('.\å¹¿ä¸œCO2-SDA\results_new.xlsx',result,sheetname{i},'W3:Z44');% å°†sEa_chainingçš„ç»“æœå†™å…¥åˆ°æ–‡ä»¶å¯¹åº”ä½ç½®   
 end
 
-s2=xlswrite('C:\Users\yuyd\Desktop\¹ã¶«CO2-SDA\results_new.xlsx',Ea_DL_Gosh,'SDA-LMDI&DL','D38:G49');% ½«Ea_DLµÄ½á¹ûĞ´Èëµ½ÎÄ¼ş¶ÔÓ¦Î»ÖÃ 
-s3=xlswrite('C:\Users\yuyd\Desktop\¹ã¶«CO2-SDA\results_new.xlsx',Ea_DL_chaining_Gosh,'SDA-LMDI&DL','L38:O49');% ½«Ea_DL_chainingµÄ½á¹ûĞ´Èëµ½ÎÄ¼ş¶ÔÓ¦Î»ÖÃ
-s2=xlswrite('C:\Users\yuyd\Desktop\¹ã¶«CO2-SDA\results_new.xlsx',Ea_LMDI_Gosh,'SDA-LMDI&DL','D54:G65');% ½«Ea_LMDIµÄ½á¹ûĞ´Èëµ½ÎÄ¼ş¶ÔÓ¦Î»ÖÃ
-s3=xlswrite('C:\Users\yuyd\Desktop\¹ã¶«CO2-SDA\results_new.xlsx',Ea_LMDI_chaining_Gosh,'SDA-LMDI&DL','L54:O65');% ½«Ea_LMDI_chainingµÄ½á¹ûĞ´Èëµ½ÎÄ¼ş¶ÔÓ¦Î»ÖÃ
+s2=xlswrite('.\å¹¿ä¸œCO2-SDA\results_new.xlsx',Ea_DL_Gosh,'SDA-LMDI&DL','D38:G49');% å°†Ea_DLçš„ç»“æœå†™å…¥åˆ°æ–‡ä»¶å¯¹åº”ä½ç½® 
+s3=xlswrite('.\å¹¿ä¸œCO2-SDA\results_new.xlsx',Ea_DL_chaining_Gosh,'SDA-LMDI&DL','L38:O49');% å°†Ea_DL_chainingçš„ç»“æœå†™å…¥åˆ°æ–‡ä»¶å¯¹åº”ä½ç½®
+s2=xlswrite('.\å¹¿ä¸œCO2-SDA\results_new.xlsx',Ea_LMDI_Gosh,'SDA-LMDI&DL','D54:G65');% å°†Ea_LMDIçš„ç»“æœå†™å…¥åˆ°æ–‡ä»¶å¯¹åº”ä½ç½®
+s3=xlswrite('.\å¹¿ä¸œCO2-SDA\results_new.xlsx',Ea_LMDI_chaining_Gosh,'SDA-LMDI&DL','L54:O65');% å°†Ea_LMDI_chainingçš„ç»“æœå†™å…¥åˆ°æ–‡ä»¶å¯¹åº”ä½ç½®
