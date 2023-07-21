@@ -1,86 +1,86 @@
-%% ±¾³ÌĞò¼ÆËãÉú²úÊÓ½ÇµÄ»·¾³Ñ¹Á¦EP_P¡¢Ïû·ÑÊÓ½ÇµÄ»·¾³Ñ¹Á¦EP_C ¡¢ÊÕÈëÊÓ½ÇµÄ»·¾³Ñ¹Á¦EP_I
+%% æœ¬ç¨‹åºè®¡ç®—ç”Ÿäº§è§†è§’çš„ç¯å¢ƒå‹åŠ›EP_Pã€æ¶ˆè´¹è§†è§’çš„ç¯å¢ƒå‹åŠ›EP_C ã€æ”¶å…¥è§†è§’çš„ç¯å¢ƒå‹åŠ›EP_I
 
 clear
 global k
-% nn=41;%ĞĞÒµÊı,n>2
-% m=7;%×îÖÕĞèÇóÊıÁ¿£¨m>3£¬×îÖÕĞèÇó¾ØÕóµÄ×îºóÁ½ÁĞ·Ö±ğÊÇÁ÷³öEXºÍÁ÷ÈëIM£©
-k=4;%×îÖÕÍ¶ÈëÊıÁ¿,Êµ¼ÊÉÏÖ»ÓĞkÓÃ×÷ÁËÈ«¾Ö±äÁ¿£º1987ºÍ1990Äê,k=5;1992-2015Äê,k=4
+% nn=41;%è¡Œä¸šæ•°,n>2
+% m=7;%æœ€ç»ˆéœ€æ±‚æ•°é‡ï¼ˆm>3ï¼Œæœ€ç»ˆéœ€æ±‚çŸ©é˜µçš„æœ€åä¸¤åˆ—åˆ†åˆ«æ˜¯æµå‡ºEXå’Œæµå…¥IMï¼‰
+k=4;%æœ€ç»ˆæŠ•å…¥æ•°é‡,å®é™…ä¸Šåªæœ‰kç”¨ä½œäº†å…¨å±€å˜é‡ï¼š1987å’Œ1990å¹´,k=5;1992-2015å¹´,k=4
 
-%% ¶ÁÈ¡»òÊäÈëÊı¾İ£¬²¢¶ÔÊı¾İ½øĞĞ½â°ü
+%% è¯»å–æˆ–è¾“å…¥æ•°æ®ï¼Œå¹¶å¯¹æ•°æ®è¿›è¡Œè§£åŒ…
 load guangdong_data_SDA.mat guangdong
-% guangdong_data_accountingÖĞµÄ±äÁ¿guangdongÎªÔª°ûÊı×é£¬¹²12¸öÔªËØ£¬¾ùÎª43*50£¨º¬ÓĞ½ø¿Ú+µ÷³öÁĞ£©µÄEEIO¾ØÕó£»
-% guangdong{i},i=1-12·Ö±ğ¶ÔÓ¦Äê·İÎª1987,1990,1992,1995,1997,2000,2002,2005,2007,2010,2012,2015
+% guangdong_data_accountingä¸­çš„å˜é‡guangdongä¸ºå…ƒèƒæ•°ç»„ï¼Œå…±12ä¸ªå…ƒç´ ï¼Œå‡ä¸º43*50ï¼ˆå«æœ‰è¿›å£+è°ƒå‡ºåˆ—ï¼‰çš„EEIOçŸ©é˜µï¼›
+% guangdong{i},i=1-12åˆ†åˆ«å¯¹åº”å¹´ä»½ä¸º1987,1990,1992,1995,1997,2000,2002,2005,2007,2010,2012,2015
 for i=3:length(guangdong)
     CEEIO=guangdong{i};
 
-    % %µ÷ÓÃcheckdataº¯Êı£¬Ğ£ÑéÊı¾İÊÇ·ñÕıÈ·
+    % %è°ƒç”¨checkdataå‡½æ•°ï¼Œæ ¡éªŒæ•°æ®æ˜¯å¦æ­£ç¡®
     % checkdata(CEEIO,n,m,k); 
 
-    %¶ÔÍ¶Èë²ú³ö±íÊı¾İÖĞµÄÁ÷Èë£¨°üÀ¨ÁË½ø¿ÚºÍµ÷Èë£¬IM£©½øĞĞ´¦Àí£¬´¦ÀíÖ®ºóÍ¶Èë²ú³ö±íµÄ×îÖÕĞèÇó¼õÉÙÁË1ÁĞ
-    %CEEIO=data_process_im(CEEIO,3); %²ÉÓÃµÚ3ÖÖ·½Ê½´¦ÀíÍ¶Èë²ú³ö±íÖĞµÄIM£¬½«3¸ÄÎª1»ò3ÎªµÚ1»ò2ÖÖ·½Ê½´¦ÀíIM
+    %å¯¹æŠ•å…¥äº§å‡ºè¡¨æ•°æ®ä¸­çš„æµå…¥ï¼ˆåŒ…æ‹¬äº†è¿›å£å’Œè°ƒå…¥ï¼ŒIMï¼‰è¿›è¡Œå¤„ç†ï¼Œå¤„ç†ä¹‹åæŠ•å…¥äº§å‡ºè¡¨çš„æœ€ç»ˆéœ€æ±‚å‡å°‘äº†1åˆ—
+    %CEEIO=data_process_im(CEEIO,3); %é‡‡ç”¨ç¬¬3ç§æ–¹å¼å¤„ç†æŠ•å…¥äº§å‡ºè¡¨ä¸­çš„IMï¼Œå°†3æ”¹ä¸º1æˆ–3ä¸ºç¬¬1æˆ–2ç§æ–¹å¼å¤„ç†IM
 
-    %µ÷ÓÃunpackdataº¯Êı£¬¶ÔCEEIO½øĞĞÊı¾İ½â°ü
-    [Z,V,F,EP,pop]=unpackdata(CEEIO); %ZÎªÖĞ¼äÍ¶Èë£¬VÎª×îÖÕÍ¶Èë£¬FÎª×îÖÕĞèÇó£¬EPÎª»·¾³Ñ¹Á¦£¬popÎªÈË¿Ú
+    %è°ƒç”¨unpackdataå‡½æ•°ï¼Œå¯¹CEEIOè¿›è¡Œæ•°æ®è§£åŒ…
+    [Z,V,F,EP,pop]=unpackdata(CEEIO); %Zä¸ºä¸­é—´æŠ•å…¥ï¼ŒVä¸ºæœ€ç»ˆæŠ•å…¥ï¼ŒFä¸ºæœ€ç»ˆéœ€æ±‚ï¼ŒEPä¸ºç¯å¢ƒå‹åŠ›ï¼Œpopä¸ºäººå£
     
-    %¼ÆËãLeontiefÄ£ĞÍºÍGoshÄ£ĞÍµÄ¸÷ÖÖ±äÁ¿
-    X=(sum(Z'))'+(sum(F'))';% ¼ÆËã·ÖĞĞÒµµÄ×Ü²ú³ö X (n*1)
-    X(find(X==0))=0.1; %½«×Ü²ú³öXÖĞÎª0µÄĞĞÒµ²ú³öÓÃÒ»¸öºÜĞ¡µÄÕıÖµ0.1Ìæ´ú£¬ÒÔÃâEPI=EP./X¼ÆËã³ö´í
-    EPI=EP./X'; %·ÖĞĞÒµ»·¾³Ñ¹Á¦¼ÆËã (1*n)
-    A=Z*inv(diag(X)); %LeontiefÄ£ĞÍ£¬Í¶Èë²ú³ö±íÖĞ¼äÁ÷Á¿ÏµÊı¼ÆËã (n*n)
-    L=eye(length(A))/(eye(length(A))-A); % LeontiefÄæ¾ØÕó£¬ÍêÈ«ĞèÇó£¨Í¶Èë£©ÏµÊı (n*n)
-    B=inv(diag(X))*Z; %GoshÄ£ĞÍ£¬Í¶Èë²ú³ö±íÖ±½Ó²ú³ö£¨·ÖÅä£©ÏµÊı¼ÆËã (n*n)
-    G=eye(length(B))/(eye(length(B))-B); % GoshÄæ¾ØÕó£¬ÍêÈ«·ÖÅäÏµÊı (n*n)
+    %è®¡ç®—Leontiefæ¨¡å‹å’ŒGoshæ¨¡å‹çš„å„ç§å˜é‡
+    X=(sum(Z'))'+(sum(F'))';% è®¡ç®—åˆ†è¡Œä¸šçš„æ€»äº§å‡º X (n*1)
+    X(find(X==0))=0.1; %å°†æ€»äº§å‡ºXä¸­ä¸º0çš„è¡Œä¸šäº§å‡ºç”¨ä¸€ä¸ªå¾ˆå°çš„æ­£å€¼0.1æ›¿ä»£ï¼Œä»¥å…EPI=EP./Xè®¡ç®—å‡ºé”™
+    EPI=EP./X'; %åˆ†è¡Œä¸šç¯å¢ƒå‹åŠ›è®¡ç®— (1*n)
+    A=Z*inv(diag(X)); %Leontiefæ¨¡å‹ï¼ŒæŠ•å…¥äº§å‡ºè¡¨ä¸­é—´æµé‡ç³»æ•°è®¡ç®— (n*n)
+    L=eye(length(A))/(eye(length(A))-A); % Leontiefé€†çŸ©é˜µï¼Œå®Œå…¨éœ€æ±‚ï¼ˆæŠ•å…¥ï¼‰ç³»æ•° (n*n)
+    B=inv(diag(X))*Z; %Goshæ¨¡å‹ï¼ŒæŠ•å…¥äº§å‡ºè¡¨ç›´æ¥äº§å‡ºï¼ˆåˆ†é…ï¼‰ç³»æ•°è®¡ç®— (n*n)
+    G=eye(length(B))/(eye(length(B))-B); % Goshé€†çŸ©é˜µï¼Œå®Œå…¨åˆ†é…ç³»æ•° (n*n)
     
     
-    %%¼ÆËã¸÷ÀàÈıÖÖÊÓ½ÇÏÂµÄ»·¾³Ñ¹Á¦
-    % Éú²úÊÓ½ÇµÄ»·¾³Ñ¹Á¦EP_P
-    EP_P{i}=EPI*diag(X); % EP_PÓëEPÏàµÈ£¬·ÖĞĞÒµµÄ»·¾³Ñ¹Á¦
+    %%è®¡ç®—å„ç±»ä¸‰ç§è§†è§’ä¸‹çš„ç¯å¢ƒå‹åŠ›
+    % ç”Ÿäº§è§†è§’çš„ç¯å¢ƒå‹åŠ›EP_P
+    EP_P{i}=EPI*diag(X); % EP_Pä¸EPç›¸ç­‰ï¼Œåˆ†è¡Œä¸šçš„ç¯å¢ƒå‹åŠ›
 
-    % Ïû·ÑÊÓ½ÇµÄ»·¾³Ñ¹Á¦EP_C
+    % æ¶ˆè´¹è§†è§’çš„ç¯å¢ƒå‹åŠ›EP_C
     [n,mm]=size(F);
-    for j=1:mm % mmÎª×îÖÕĞèÇóµÄÖÖÀà,mm=6
-        EP_C{i,j}=EPI*L*diag(F(:,j)); %µÚjÖÖ×îÖÕĞèÇó£¨ÈçÏû·Ñ£©ËùÓÕµ¼µÄ»·¾³Ñ¹Á¦£¨·ÖĞĞÒµ£©
+    for j=1:mm % mmä¸ºæœ€ç»ˆéœ€æ±‚çš„ç§ç±»,mm=6
+        EP_C{i,j}=EPI*L*diag(F(:,j)); %ç¬¬jç§æœ€ç»ˆéœ€æ±‚ï¼ˆå¦‚æ¶ˆè´¹ï¼‰æ‰€è¯±å¯¼çš„ç¯å¢ƒå‹åŠ›ï¼ˆåˆ†è¡Œä¸šï¼‰
     end
-    %mm=6,FÊı¾İµÚ1:6ÁĞ·Ö±ğ¶ÔÓ¦Å©´åÏû·Ñ¡¢³ÇÕòÏû·Ñ¡¢Õş¸®Ïû·Ñ¡¢¹Ì¶¨×Ê²úÍ¶×Ê¡¢´æ»õ±ä»¯¡¢Á÷³ö£¨³ö¿Ú+µ÷³ö£©
-    EP_tC{i}=EPI*L*diag(sum(F')); %ËùÓĞ×îÖÕĞèÇóËùÓÕµ¼µÄ»·¾³Ñ¹Á¦£¨·ÖĞĞÒµ£©
+    %mm=6,Fæ•°æ®ç¬¬1:6åˆ—åˆ†åˆ«å¯¹åº”å†œæ‘æ¶ˆè´¹ã€åŸé•‡æ¶ˆè´¹ã€æ”¿åºœæ¶ˆè´¹ã€å›ºå®šèµ„äº§æŠ•èµ„ã€å­˜è´§å˜åŒ–ã€æµå‡ºï¼ˆå‡ºå£+è°ƒå‡ºï¼‰
+    EP_tC{i}=EPI*L*diag(sum(F')); %æ‰€æœ‰æœ€ç»ˆéœ€æ±‚æ‰€è¯±å¯¼çš„ç¯å¢ƒå‹åŠ›ï¼ˆåˆ†è¡Œä¸šï¼‰
 
-    % ÊÕÈëÊÓ½ÇµÄ»·¾³Ñ¹Á¦EP_I
+    % æ”¶å…¥è§†è§’çš„ç¯å¢ƒå‹åŠ›EP_I
     [kk,n]=size(V);
-    for j=1:kk % kkÎª×îÖÕÍ¶ÈëµÄÖÖÀà,kk=5»ò4
-        EP_I{i,j}=diag(V(j,:))*G*EPI'; %µÚjÖÖ×îÖÕÍ¶Èë£¨Èç¹Ì¶¨×Ê²úÕÛ¾É£©ËùÓÕµ¼µÄ»·¾³Ñ¹Á¦£¨·ÖĞĞÒµ£©
+    for j=1:kk % kkä¸ºæœ€ç»ˆæŠ•å…¥çš„ç§ç±»,kk=5æˆ–4
+        EP_I{i,j}=diag(V(j,:))*G*EPI'; %ç¬¬jç§æœ€ç»ˆæŠ•å…¥ï¼ˆå¦‚å›ºå®šèµ„äº§æŠ˜æ—§ï¼‰æ‰€è¯±å¯¼çš„ç¯å¢ƒå‹åŠ›ï¼ˆåˆ†è¡Œä¸šï¼‰
     end
-    %kk=5,1987-1990ÄêVÊı¾İµÄµÚ1:5ĞĞ·Ö±ğÎª¹Ì¶¨×Ê²úÕÛ¾É¡¢ÀÍ¶¯ÕßÊÕÈë¡¢¸£Àû»ù½ğ¡¢ÀûÈóºÍË°½ğ¡¢ÆäËû£»
-    %kk=4,1992-2015ÄêVÊı¾İµÄµÚ1:4ĞĞ·Ö±ğ¶ÔÓ¦¹Ì¶¨×Ê²úÕÛ¾É¡¢´ÓÒµÈËÔ±±¨³ê¡¢Éú²úË°¾»¶î¡¢ÓªÒµÓ¯Óà
-    EP_tI{i}=diag(sum(V))*G*EPI'; %ËùÓĞ×îÖÕĞèÇóËùÓÕµ¼µÄ»·¾³Ñ¹Á¦£¨·ÖĞĞÒµ£©
+    %kk=5,1987-1990å¹´Væ•°æ®çš„ç¬¬1:5è¡Œåˆ†åˆ«ä¸ºå›ºå®šèµ„äº§æŠ˜æ—§ã€åŠ³åŠ¨è€…æ”¶å…¥ã€ç¦åˆ©åŸºé‡‘ã€åˆ©æ¶¦å’Œç¨é‡‘ã€å…¶ä»–ï¼›
+    %kk=4,1992-2015å¹´Væ•°æ®çš„ç¬¬1:4è¡Œåˆ†åˆ«å¯¹åº”å›ºå®šèµ„äº§æŠ˜æ—§ã€ä»ä¸šäººå‘˜æŠ¥é…¬ã€ç”Ÿäº§ç¨å‡€é¢ã€è¥ä¸šç›ˆä½™
+    EP_tI{i}=diag(sum(V))*G*EPI'; %æ‰€æœ‰æœ€ç»ˆéœ€æ±‚æ‰€è¯±å¯¼çš„ç¯å¢ƒå‹åŠ›ï¼ˆåˆ†è¡Œä¸šï¼‰
     
 end
 
-%% ½á¹û´æ´¢£¬´æ´¢Ö÷Òª½á¹ûresult(6Àà×îÖÕĞèÇó·ÖĞĞÒµµÄ»·¾³Ñ¹Á¦,×îÖÕĞèÇó×ÜÁ¿µÄ»·¾³Ñ¹Á¦ºÍ»ùÓÚÉú²úµÄ»·¾³Ñ¹Á¦£©
-sheetname={'1987','1990','1992','1995','1997','2000','2002','2005','2007','2010','2012','2015'};%½¨Á¢Êı¾İÄê·İ±êÇ©£¬ÓëguangdongÊı¾İ¶ÔÓ¦
+%% ç»“æœå­˜å‚¨ï¼Œå­˜å‚¨ä¸»è¦ç»“æœresult(6ç±»æœ€ç»ˆéœ€æ±‚åˆ†è¡Œä¸šçš„ç¯å¢ƒå‹åŠ›,æœ€ç»ˆéœ€æ±‚æ€»é‡çš„ç¯å¢ƒå‹åŠ›å’ŒåŸºäºç”Ÿäº§çš„ç¯å¢ƒå‹åŠ›ï¼‰
+sheetname={'1987','1990','1992','1995','1997','2000','2002','2005','2007','2010','2012','2015'};%å»ºç«‹æ•°æ®å¹´ä»½æ ‡ç­¾ï¼Œä¸guangdongæ•°æ®å¯¹åº”
 
-%%1987ºÍ1990Äê£¬income-basedµÄ×îÖÕÍ¶ÈëÓĞ5¸ö£¬Çé¿öÌØÊâ
+%%1987å’Œ1990å¹´ï¼Œincome-basedçš„æœ€ç»ˆæŠ•å…¥æœ‰5ä¸ªï¼Œæƒ…å†µç‰¹æ®Š
 % for i=1:2    
 %     
 %     data=[EP_P{i}',EP_C{i,1}',EP_C{i,2}',EP_C{i,3}',EP_C{i,4}',EP_C{i,5}',EP_C{i,6}',EP_tC{i}',...
-%         EP_I{i,1},EP_I{i,2},EP_I{i,3},EP_I{i,4},EP_I{i,5},EP_tI{i}]; % ½«Êı¾İ×é¼¯µ½data;
+%         EP_I{i,1},EP_I{i,2},EP_I{i,3},EP_I{i,4},EP_I{i,5},EP_tI{i}]; % å°†æ•°æ®ç»„é›†åˆ°data;
 %     [mm, nn]=size(data);            
-%     data_cell=mat2cell(data, ones(mm,1), ones(nn,1));    % ½«dataÇĞ¸î³Ém*nµÄcell¾ØÕó
-%     title={'Production-based','C_rural_consumption','C_urban_consumption','C_government_consumption','C_fixed_investment','C_inventory_changes','C_outflow','C_all','I_fixed assets depreciation', 'I_income of workers', 'I_welfare funds', 'I_profits and taxes','I_others','I_all'};              % Ìí¼Ó±äÁ¿Ãû³Æ
-%     result= [title; data_cell];                         % ½«±äÁ¿Ãû³ÆºÍÊıÖµ×é¼¯µ½result
-%     s1=xlswrite('C:\Users\yuyd\Desktop\¹ã¶«CO2-SDA\results_new.xlsx',result,sheetname{i},'C3:P44');% ½«resultĞ´Èëµ½ÎÄ¼şÖĞ
+%     data_cell=mat2cell(data, ones(mm,1), ones(nn,1));    % å°†dataåˆ‡å‰²æˆm*nçš„cellçŸ©é˜µ
+%     title={'Production-based','C_rural_consumption','C_urban_consumption','C_government_consumption','C_fixed_investment','C_inventory_changes','C_outflow','C_all','I_fixed assets depreciation', 'I_income of workers', 'I_welfare funds', 'I_profits and taxes','I_others','I_all'};              % æ·»åŠ å˜é‡åç§°
+%     result= [title; data_cell];                         % å°†å˜é‡åç§°å’Œæ•°å€¼ç»„é›†åˆ°result
+%     s1=xlswrite('.\å¹¿ä¸œCO2-SDA\results_new.xlsx',result,sheetname{i},'C3:P44');% å°†resultå†™å…¥åˆ°æ–‡ä»¶ä¸­
 %     
 % end
 
-%1992-2015Äê£¬income-basedµÄ×îÖÕÍ¶ÈëÎª4¸ö£¬±ê×¼»¯Êä³ö
+%1992-2015å¹´ï¼Œincome-basedçš„æœ€ç»ˆæŠ•å…¥ä¸º4ä¸ªï¼Œæ ‡å‡†åŒ–è¾“å‡º
 for i=3:length(guangdong)    
     
     data=[EP_P{i}',EP_C{i,1}',EP_C{i,2}',EP_C{i,3}',EP_C{i,4}',EP_C{i,5}',EP_C{i,6}',EP_tC{i}',...
-        EP_I{i,1},EP_I{i,2},EP_I{i,3},EP_I{i,4},EP_tI{i}]; % ½«Êı¾İ×é¼¯µ½data;
+        EP_I{i,1},EP_I{i,2},EP_I{i,3},EP_I{i,4},EP_tI{i}]; % å°†æ•°æ®ç»„é›†åˆ°data;
     [mm, nn]=size(data);            
-    data_cell=mat2cell(data, ones(mm,1), ones(nn,1));    % ½«dataÇĞ¸î³Ém*nµÄcell¾ØÕó
-    title={'Production-based','C_rural_consumption','C_urban_consumption','C_government_consumption','C_fixed_investment','C_inventory_changes','C_outflow','C_all','I_fixed assets depreciation', 'I_remuneration for employees', 'I_net production tax', 'I_operating surplus','I_all'};              % Ìí¼Ó±äÁ¿Ãû³Æ
-    result= [title; data_cell];                         % ½«±äÁ¿Ãû³ÆºÍÊıÖµ×é¼¯µ½result
-    s1=xlswrite('C:\Users\yuyd\Desktop\¹ã¶«CO2-SDA\results_new.xlsx',result,sheetname{i},'C3:O44');% ½«resultĞ´Èëµ½ÎÄ¼şÖĞ
+    data_cell=mat2cell(data, ones(mm,1), ones(nn,1));    % å°†dataåˆ‡å‰²æˆm*nçš„cellçŸ©é˜µ
+    title={'Production-based','C_rural_consumption','C_urban_consumption','C_government_consumption','C_fixed_investment','C_inventory_changes','C_outflow','C_all','I_fixed assets depreciation', 'I_remuneration for employees', 'I_net production tax', 'I_operating surplus','I_all'};              % æ·»åŠ å˜é‡åç§°
+    result= [title; data_cell];                         % å°†å˜é‡åç§°å’Œæ•°å€¼ç»„é›†åˆ°result
+    s1=xlswrite('.\å¹¿ä¸œCO2-SDA\results_new.xlsx',result,sheetname{i},'C3:O44');% å°†resultå†™å…¥åˆ°æ–‡ä»¶ä¸­
     
 end
 
